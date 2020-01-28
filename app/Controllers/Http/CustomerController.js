@@ -132,7 +132,21 @@ class CustomerController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async destroy({ params, request, response }) {
+  async destroy({ params: { id }, request, response }) {
+    const customer = await Customer.find(id)
+
+    if (customer) {
+      await customer.delete()
+
+      response.status(200).json({
+        data: customer,
+        message: 'Delete Successfuly'
+      })
+    } else {
+      response.status(404).json({
+        message: 'Not found'
+      })
+    }
   }
 }
 
