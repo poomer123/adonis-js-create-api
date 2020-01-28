@@ -102,7 +102,26 @@ class CustomerController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async update({ params, request, response }) {
+  async update({ params: { id }, request, response }) {
+
+    const customer = await Customer.find(id)
+    if (customer) {
+      const { name, description } = request.post()
+
+      customer.name = name
+      customer.description = description
+
+      await customer.save()
+
+      response.status(200).json({
+        data: customer,
+        message: 'Update Successfuly'
+      })
+    } else {
+      response.status(404).json({
+        message: 'Not found'
+      })
+    }
   }
 
   /**

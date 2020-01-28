@@ -23,3 +23,4 @@ Route.get('/', () => {
 Route.get('customers', 'CustomerController.index')
 Route.get('customers/:id', 'CustomerController.show')
 Route.post('customers', 'CustomerController.store')
+Route.patch('customers/:id', 'CustomerController.update')
