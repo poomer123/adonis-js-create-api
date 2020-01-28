@@ -68,7 +68,18 @@ class CustomerController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async show({ params, request, response, view }) {
+  async show({ params, request, response, view, params: { id } }) {
+    const customer = await Customer.find(id)
+    if (customer) {
+      response.status(200).json({
+        data: customer,
+        message: 'Successfuly'
+      })
+    } else {
+      response.status(404).json({
+        message: 'Not found'
+      })
+    }
   }
 
   /**
