@@ -20,4 +20,5 @@ Route.get('/', () => {
   return { greeting: 'Hello world in JSON' }
 })
 
+Route.get('customers', 'CustomerController.index')
 Route.post('customers', 'CustomerController.store')

@@ -20,6 +20,11 @@ class CustomerController {
    * @param {View} ctx.view
    */
   async index({ request, response, view }) {
+    const customers = await Customer.all()
+    response.json({
+      message: "Here are your customers",
+      data: customers
+    })
   }
 
   /**
